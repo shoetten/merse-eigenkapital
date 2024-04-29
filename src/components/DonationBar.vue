@@ -4,17 +4,19 @@ import { onMounted, ref } from 'vue'
 
 const current = ref(0)
 const total = ref(0)
+const isLoading = ref(true)
 
 onMounted(async () => {
   const response = await fetch('https://merse88b.de/wp-json/wp/v2/pages/103')
   const body = await response.json()
   current.value = body['acf']['eigenkapital_current']
   total.value = body['acf']['eigenkapital_total']
+  isLoading.value = false
 })
 
-const relativeProgress = computed(() => (current.value / total.value * 100))
+const relativeProgress = computed(() => (current.value !== 0 ? current.value / total.value * 100 : 0))
 
-const formatter = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 })
+const formatter = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0, minimumIntegerDigits: 6 })
 </script>
 
 <template>
@@ -40,11 +42,15 @@ const formatter = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 
   --glass-padding: 5px;
   --amount-inset: -10px;
 
-  min-height: 450px;
+  min-height: 550px;
   display: grid;
   grid-template-rows: auto 1fr;
   justify-items: center;
   gap: 1rem;
+
+  padding: 3rem;
+  backdrop-filter: blur(5px);
+  border-radius: 1rem;
 
   .thermometer {
     display: flex;
@@ -71,6 +77,9 @@ const formatter = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 
     position: absolute;
     bottom: var(--amount-inset);
     z-index: 30;
+    height: 0;
+
+    transition: height 0.6s ease-out;
   }
 
   strong { display: block; text-align: center; }
@@ -82,6 +91,8 @@ const formatter = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 
     font-size: 1rem;
     position: absolute;
     right: calc(100% + 2*var(--glass-padding));
+    bottom: 0;
+    transition: bottom 0.6s ease-out;
   }
 }
 
