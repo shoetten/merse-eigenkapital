@@ -19,80 +19,88 @@ const formatter = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 
 
 <template>
   <div class="donation-meter">
-    <strong>Wir brauchen</strong>
-    <strong class="goal">{{ formatter.format(total) }}</strong>
-    <span class="glass">
-        <strong class="total" :style="`bottom: ${relativeProgress}%`">{{ formatter.format(current) }}</strong>
-        <span class="amount" :style="`height: ${relativeProgress}%`"></span>
-    </span>
-    <div class="bulb">
-        <span class="bottom-circle"></span>
-        <span class="filler">
-            <span></span>
-        </span>
+    <div class="text">
+      <strong>Wir brauchen</strong>
+      <h3 class="goal">{{ formatter.format(total) }}</h3>
+    </div>
+    <div class="thermometer">
+      <span class="glass">
+        <strong class="total" :style="{ bottom: `calc(${relativeProgress}% + var(--amount-inset))` }">{{ formatter.format(current) }}</strong>
+        <span class="amount" :style="{ height: relativeProgress + '%' }"></span>
+      </span>
+      <div class="bulb">
+          <span class="bottom-circle"></span>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
 .donation-meter {
+  --glass-padding: 5px;
+  --amount-inset: -10px;
+
+  min-height: 450px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  justify-items: center;
+  gap: 1rem;
+
+  .thermometer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 60px;
+  }
+
   .glass {
     background: #e5e5e5;
     border-radius: 100px 100px 0 0;
     display: block;
-    height: 300px;
-    margin: 0 35px 10px;
-    padding: 5px;
+    height: 100%;
+    padding: var(--glass-padding);
     position: relative;
-    width: 20px;
+    width: 50%;
   }
   .amount {
     background: var(--color-primary);
     border-radius: 100px;
     display: block;
-    width: 20px;
+    width: calc(100% - 2*var(--glass-padding));
     position: absolute;
-     bottom: 5px;
+    bottom: var(--amount-inset);
+    z-index: 30;
   }
+
   strong { display: block; text-align: center; }
   .goal {
-    font-size: 30px;
+    font-size: 2rem;
+    margin: 0;
   }
   .total {
-    font-size: 16px;
+    font-size: 1rem;
     position: absolute;
-    right: 35px;
+    right: calc(100% + 2*var(--glass-padding));
   }
 }
 
 .bulb {
   background: #e5e5e5;
-  border-radius: 100px;
+  border-radius: 100%;
   display: block;
-  height: 50px;
-  margin: 0 35px 10px;
-  padding: 5px;
+  padding: var(--glass-padding);
   position: relative;
-    top: -20px;
-    right: 15px;
-  width: 50px;
+  top: -20px;
+  width: 100%;
+  aspect-ratio: 1;
+
   .bottom-circle {
     background: var(--color-primary);
     border-radius: 100px;
     display: block;
-    height: 50px;
-    width: 50px;
-  }
-  .filler {
-    background: var(--color-primary);
-    border-radius: 100px 100px 0 0;
-    display: block;
-    height: 30px;
-    width: 20px;
-    position: relative;
-      top: -65px;
-      right: -15px;
-    z-index: 30;
+    height: 100%;
+    width: 100%;
   }
 }
 </style>
