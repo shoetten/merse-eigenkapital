@@ -12,7 +12,7 @@
 }
 
 body {
-  background-image: url('./hausfoto_web_large.jpg');
+  background-image: url('/hausfoto_web_large.jpg');
   background-size: cover;
 }
 
