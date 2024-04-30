@@ -18,7 +18,12 @@ main {
   display: flex;
   flex-direction: column;
   place-items: center;
+  justify-content: center;
   gap: 2rem;
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
 }
 
 button, .btn {
