@@ -1,10 +1,9 @@
 on: push
-name: Deploy website 🚀
+name: Build & Deploy website 🚀
 
 jobs:
   deploy:
-    name: Deploy
-    if: github.ref_name == 'main'
+    name: Build & Deploy
     runs-on: ubuntu-latest
     steps:
     - name: 🚚 Get latest code
@@ -24,6 +23,7 @@ jobs:
 
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      if: github.ref_name == 'main'
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USER }}
