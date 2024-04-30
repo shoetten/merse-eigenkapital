@@ -2,7 +2,7 @@
   font-family: 'Archivo Variable', sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  font-size: clamp(16px, calc(20px + (36 - 20) * (100vw - 768px)/(1920 - 768)), 48px);
+  font-size: clamp(16px, calc(16px + (36 - 20) * (100vw - 768px)/(1920 - 768)), 40px);
 
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
@@ -11,13 +11,11 @@
   --color-secondary: #d6c91d;
 }
 
-body {
-  background-image: url('/hausfoto_web_large.jpg');
-  background-size: cover;
-}
-
 #app {
-  background-color: rgba(0,0,0,0.5);
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
 }
 
 a {

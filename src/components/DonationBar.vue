@@ -47,13 +47,12 @@ const formatter = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 
   --glass-padding: min(0.3rem, 6px);
   --amount-inset: -10px;
 
-  min-height: max(550px, 70vh);
   display: grid;
   grid-template-rows: auto 1fr;
   justify-items: center;
   gap: 1rem;
 
-  padding: 3rem;
+  padding: 2rem 3rem;
   backdrop-filter: blur(5px);
   border-radius: 1rem;
 

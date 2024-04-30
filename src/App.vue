@@ -6,7 +6,7 @@ import Badge from './components/Badge.vue'
 <template>
   <main>
     <Badge>Gekauft</Badge>
-    <DonationBar />
+    <DonationBar class="bar" />
     <a class="btn" href="https://merse88b.de/unterstuetzen/">
       Jetzt unterstützen!
     </a>
@@ -21,9 +21,34 @@ main {
   justify-content: center;
   gap: 2rem;
   position: relative;
-  min-height: 100vh;
   width: 100%;
+  max-width: 800px;
+  min-height: 100vh;
   overflow: hidden;
+  padding: 2rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    background-image: url('/hausfoto_web_large.jpg');
+    background-size: cover;
+  }
+
+  background-color: rgba(0, 0, 0, 0.3);
+
+  @media screen and (min-width: 800px) {
+    min-height: 90vh;
+    border-radius: 1rem;
+  }
+}
+
+.bar {
+  min-height: max(550px, 60vh);
 }
 
 button, .btn {
