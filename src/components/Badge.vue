@@ -14,7 +14,7 @@
   text-transform: uppercase;
   padding: 0.5rem 4rem;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 1.6rem;
 
   position: absolute;
   z-index: 99;
