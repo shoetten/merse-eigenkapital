@@ -7,8 +7,12 @@ npm install
 npm run dev
 ```
 
-## Deployment
+## Build
 
 ```
 npm run build
 ```
+
+## Deployment
+
+All commits on `main` will be deployed via ftps.
