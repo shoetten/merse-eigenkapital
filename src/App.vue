@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import DonationBar from './components/DonationBar.vue'
+import Badge from './components/Badge.vue'
 </script>
 
 <template>
   <main>
+    <Badge>Gekauft</Badge>
     <DonationBar />
     <a class="btn" href="https://merse88b.de/unterstuetzen/">
-      Jetzt unterstützten!
+      Jetzt unterstützen!
     </a>
   </main>
 </template>
