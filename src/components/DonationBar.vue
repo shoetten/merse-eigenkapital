@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { computed } from '@vue/reactivity';
+import { computed } from '@vue/reactivity'
 import { onMounted, ref } from 'vue'
+import CountUp from 'vue-countup-v3'
 
 const current = ref(0)
 const total = ref(0)
@@ -23,11 +24,17 @@ const formatter = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 
   <div class="donation-meter">
     <div class="text">
       <strong>Wir brauchen</strong>
-      <h3 class="goal">{{ formatter.format(total) }}</h3>
+      <h3 class="goal">
+        {{ formatter.format(total) }}
+      </h3>
     </div>
     <div class="thermometer">
       <span class="glass">
-        <strong class="total" :style="{ bottom: `calc(${relativeProgress}% + var(--amount-inset))` }">{{ formatter.format(current) }}</strong>
+        <strong class="total" :style="{ bottom: `calc(${relativeProgress}% + var(--amount-inset))` }">
+          <count-up :end-val="current" :duration="1" :formattingFn="formatter.format" :separator="'.'">
+            <template #suffix>€</template>
+          </count-up>
+        </strong>
         <span class="amount" :style="{ height: relativeProgress + '%' }"></span>
       </span>
       <div class="bulb">
@@ -39,10 +46,10 @@ const formatter = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 
 
 <style scoped>
 .donation-meter {
-  --glass-padding: 5px;
+  --glass-padding: min(0.3rem, 6px);
   --amount-inset: -10px;
 
-  min-height: 550px;
+  min-height: max(550px, 70vh);
   display: grid;
   grid-template-rows: auto 1fr;
   justify-items: center;
@@ -79,7 +86,7 @@ const formatter = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 
     z-index: 30;
     height: 0;
 
-    transition: height 0.6s ease-out;
+    transition: height 0.8s ease-out;
   }
 
   strong { display: block; text-align: center; }
@@ -92,7 +99,7 @@ const formatter = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 
     position: absolute;
     right: calc(100% + 2*var(--glass-padding));
     bottom: 0;
-    transition: bottom 0.6s ease-out;
+    transition: bottom 0.8s ease-out;
   }
 }
 
