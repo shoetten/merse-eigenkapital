@@ -25,15 +25,13 @@ const formatter = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 
     <div class="text">
       <strong>Wir brauchen</strong>
       <h3 class="goal">
-        {{ formatter.format(total) }}
+        <count-up :end-val="total" :duration="1" :options="{ formattingFn: formatter.format}" />
       </h3>
     </div>
     <div class="thermometer">
       <span class="glass">
         <strong class="total" :style="{ bottom: `calc(${relativeProgress}% + var(--amount-inset))` }">
-          <count-up :end-val="current" :duration="1" :formattingFn="formatter.format" :separator="'.'">
-            <template #suffix>€</template>
-          </count-up>
+          <count-up :end-val="current" :duration="1" :options="{ formattingFn: formatter.format}" />
         </strong>
         <span class="amount" :style="{ height: relativeProgress + '%' }"></span>
       </span>
