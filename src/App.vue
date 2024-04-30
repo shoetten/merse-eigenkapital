@@ -37,6 +37,7 @@ main {
     z-index: -1;
     background-image: url('/hausfoto_web_large.jpg');
     background-size: cover;
+    background-position: center 25%;
   }
 
   background-color: rgba(0, 0, 0, 0.3);
