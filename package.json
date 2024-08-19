@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@fontsource-variable/archivo": "^5.0.19",
+    "@fontsource-variable/archivo": "^5.0.20",
     "modern-normalize": "^2.0.0",
     "vue": "^3.4.38",
     "vue-countup-v3": "^1.4.2"
